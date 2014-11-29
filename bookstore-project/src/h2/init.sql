@@ -42,6 +42,7 @@ insert into AUTHORS (FIRST_NAME, LAST_NAME, BIRTH_DATE) VALUES ('Ray', 'Bradbury
 insert into AUTHORS (FIRST_NAME, LAST_NAME, BIRTH_DATE) VALUES ('Edgar Allan', 'Poe', '1809-01-19');
 insert into AUTHORS (FIRST_NAME, LAST_NAME, BIRTH_DATE) VALUES ('Charles', 'Baudelaire', '1821-04-09');
 insert into AUTHORS (FIRST_NAME, LAST_NAME, BIRTH_DATE) VALUES ('Francois-Xavier', 'Sennesal', null);
+insert into AUTHORS (FIRST_NAME, LAST_NAME, BIRTH_DATE) VALUES ('Peter', 'Tomasi', null);
 
 -- books
 insert into BOOKS (ISBN13, TITLE, UNIT_PRICE, EDITOR, AUTHOR_ID)
@@ -72,6 +73,9 @@ insert into BOOKS (ISBN13, TITLE, UNIT_PRICE, EDITOR, AUTHOR_ID)
 VALUES ('978-2746054646', 'JSF mis en pratique avec Eclipse', 32.76, 'Editions ENI', 
 (SELECT MIN(ID) FROM AUTHORS WHERE LAST_NAME='Sennesal'));
 
+insert into BOOKS (ISBN13, TITLE, UNIT_PRICE, EDITOR, AUTHOR_ID)
+VALUES ('978-2365773553', 'Batman et Robin Tome 1', 17.50, 'Urban Comics', 
+(SELECT MIN(ID) FROM AUTHORS WHERE LAST_NAME='Tomasi'));
 
 -- orders
 insert into ORDERS (ID, ORDER_DATE, USER_ID, SHIPPING_ADR_ID) VALUES (1, CURRENT_TIMESTAMP, 'yhovart', 1);

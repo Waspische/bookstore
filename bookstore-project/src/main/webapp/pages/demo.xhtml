@@ -27,6 +27,10 @@
 					<f:facet name="header">Author</f:facet>
 					#{book.author.lastName} #{book.author.firstName} 
 				</rich:column>
+				<rich:column>
+					<f:facet name="header">Add to Cart</f:facet>
+					<h:button value="Add"></h:button>
+				</rich:column>
 			</rich:dataTable>
 
 			<h:form id="addBookForm">
