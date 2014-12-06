@@ -20,6 +20,10 @@ public class LoginBean {
 	private String passwordComplexityIndicator ;
 	
 	public String logMe(){
+		//Passer sur la BDD
+		
+		
+		
 		if (!"log".equals(login)){
 			FacesContext.getCurrentInstance().addMessage("loginForm:login", new FacesMessage(FacesMessage.SEVERITY_ERROR, "User does not exist!", "User does not exist!"));
 			return null;
