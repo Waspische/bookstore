@@ -28,6 +28,10 @@
 					#{book.author.lastName} #{book.author.firstName} 
 				</rich:column>
 				<rich:column>
+					<f:facet name="header">Price</f:facet>
+					#{book.unitPrice} €
+				</rich:column>
+				<rich:column>
 					<f:facet name="header">Add to Cart</f:facet>
 					<h:button value="Add"></h:button>
 				</rich:column>
