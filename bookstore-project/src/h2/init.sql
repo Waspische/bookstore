@@ -30,10 +30,12 @@ ALTER TABLE ORDER_LINES ADD CONSTRAINT IF NOT EXISTS ORDERLINESBOOKS_ID FOREIGN 
 --addresses
 insert into MAILING_ADDRESSES (ID, LINE1, ZIP, CITY) VALUES (1, '666, rue des tekos', '59790', 'RONCHIN') ;
 insert into MAILING_ADDRESSES (ID, LINE1, ZIP, CITY) VALUES (2, '7777, avenue sans fin', '59790', 'RONCHIN');
-ALTER TABLE MAILING_ADDRESSES ALTER COLUMN id RESTART WITH 3;
+insert into MAILING_ADDRESSES (ID, LINE1, ZIP, CITY) VALUES (3, '41, rue du port', '59000', 'Lille');
+ALTER TABLE MAILING_ADDRESSES ALTER COLUMN id RESTART WITH 4;
 
 --users
 insert into USERS (LOGIN, EMAIL, PWD, PERSONNAL_ADR_ID) VALUES ('yhovart', 'yhovart@gmail.com', 'yh0vart', 1);
+insert into USERS (LOGIN, EMAIL, PWD, PERSONNAL_ADR_ID) VALUES ('maxime', 'maxime.crendal@gmail.Com', 'max', 3);
 
 -- authors
 insert into AUTHORS (FIRST_NAME, LAST_NAME, BIRTH_DATE) VALUES ('Merick', 'Schincariol', '1981-12-28') ;

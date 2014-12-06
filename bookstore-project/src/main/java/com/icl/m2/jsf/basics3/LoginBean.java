@@ -20,10 +20,10 @@ public class LoginBean {
 	private String passwordComplexityIndicator ;
 	
 	public String logMe(){
-		if (!"yhovart".equals(login)){
+		if (!"log".equals(login)){
 			FacesContext.getCurrentInstance().addMessage("loginForm:login", new FacesMessage(FacesMessage.SEVERITY_ERROR, "User does not exist!", "User does not exist!"));
 			return null;
-		}else if (!"yh0vart".equals(password)){
+		}else if (!"log".equals(password)){
 			FacesContext.getCurrentInstance().addMessage("loginForm:password", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Password does not match!", "Wrong password!!"));
 			return null;
 		}
@@ -31,6 +31,7 @@ public class LoginBean {
 		
 		return "/pages/home.xthml";
 	}
+	
 	
 	public String getLogin() {
 		return login;
