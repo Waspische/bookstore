@@ -8,6 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 
+import com.bookstore.entities.User;
+import com.bookstore.service.UserService;
+
 //@Named("loginBean")
 @ManagedBean
 @SessionScoped
@@ -17,14 +20,29 @@ public class LoginBean {
 	
 	private String password;
 	
+	private String email;
+	
 	private String passwordComplexityIndicator ;
 	
 	public String logMe(){
 		//Passer sur la BDD
 		
+		UserService us = new UserService();
+		User u = us.login(login, password);
 		
+		if(u == null)
+		{
+			FacesContext.getCurrentInstance().addMessage("loginForm:login", new FacesMessage(FacesMessage.SEVERITY_ERROR, "User does not exist or incorrect password!", "User does not existUser does not exist or incorrect password!"));
+			return null;
+		}
+		else
+		{
+			this.email = u.getEmail();
+			FacesContext.getCurrentInstance().addMessage("loginForm:password", new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenue " + login + ".", "Achete!"));
+			return "/pages/home.xthml";
+		}
 		
-		if (!"log".equals(login)){
+		/*if (!"log".equals(login)){
 			FacesContext.getCurrentInstance().addMessage("loginForm:login", new FacesMessage(FacesMessage.SEVERITY_ERROR, "User does not exist!", "User does not exist!"));
 			return null;
 		}else if (!"log".equals(password)){
@@ -33,7 +51,7 @@ public class LoginBean {
 		}
 		FacesContext.getCurrentInstance().addMessage("loginForm:password", new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenue " + login + ".", "Achete!"));
 		
-		return "/pages/home.xthml";
+		return "/pages/home.xthml";*/
 	}
 	
 	
@@ -45,6 +63,14 @@ public class LoginBean {
 		this.login = login;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public String getPassword() {
 		return password;
 	}

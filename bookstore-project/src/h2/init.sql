@@ -35,7 +35,7 @@ ALTER TABLE MAILING_ADDRESSES ALTER COLUMN id RESTART WITH 4;
 
 --users
 insert into USERS (LOGIN, EMAIL, PWD, PERSONNAL_ADR_ID) VALUES ('yhovart', 'yhovart@gmail.com', 'yh0vart', 1);
-insert into USERS (LOGIN, EMAIL, PWD, PERSONNAL_ADR_ID) VALUES ('maxime', 'maxime.crendal@gmail.Com', 'max', 3);
+insert into USERS (LOGIN, EMAIL, PWD, PERSONNAL_ADR_ID) VALUES ('maxime', 'maxime.crendal@gmail.com', 'max', 3);
 insert into USERS (LOGIN, EMAIL, PWD, PERSONNAL_ADR_ID) VALUES ('adrien', 'adrien.stadler@gmail.com', 'adr', 3);
 
 -- authors
