@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<body>
+	<ui:composition template="/templates/basicTemplate.xhtml">
+
+		<ui:define name="title">
+			Please fill the fields below :
+		</ui:define>
+
+		<ui:define name="body">
+			<h:form id="myForm" >
+			<h:panelGrid columns="1">
+				<h:outputLabel value="Email:" for="email"/>
+				<br/>
+				<h:inputText value="#{loginBean.email}" required="true" id="email"/>
+				<br/>
+				<h:outputLabel value="Login:" for="login"/>
+				<br/>
+				<h:inputText value="#{loginBean.login}" required="true" id="login">
+					<f:validateLength minimum="3" />
+					<!-- Mettre une validation pour le login, s'il n'existe pas encore. -->
+				</h:inputText>
+				<br/>
+				<h:message for=":myForm:login" styleClass="error"/>
+				<br/>
+				<br/>
+				<h:outputLabel value="Password:" for="password"/>
+				<br/>
+				<h:inputSecret value="#{loginBean.password}" required="true" id="password">
+					<f:validateLength minimum="2" />
+				</h:inputSecret> 
+				<br/>
+				<h:message for="password" styleClass="error"/>
+				<br/>
+				<br/>
+				<h:commandButton value="Logon" action="#{loginBean.logMe}"/> 
+			</h:panelGrid>
+		</h:form>
+		</ui:define>
+
+		
+
+	</ui:composition>
+</body>
+</html>

@@ -41,18 +41,5 @@ public class UserService {
 			throw new UserAlreadyExistsException(login, e);
 		}
 		
-//		if(em.find(User.class, login) == null)
-//		{
-//			em.createQuery("insert into USERS (LOGIN, EMAIL, PWD, PERSONNAL_ADR_ID) VALUES ("+login+", "+mail+", "+password+", null)");
-//		}
-//		else
-//		{
-//			return false;
-//		}
-//		if(em.find(User.class, login) != null)
-//		{
-//			return true;
-//		}
-		
 	}
 }
