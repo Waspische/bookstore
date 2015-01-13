@@ -55,4 +55,10 @@ public class DemoBean {
 		this.authors = authors;
 	}
 	
+	public String infoBook()
+	{
+		System.out.println("toto");
+		return "";
+	}
+
 }

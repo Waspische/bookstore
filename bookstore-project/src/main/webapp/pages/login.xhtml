@@ -14,37 +14,6 @@
 		</ui:define>
 
 		<ui:define name="body">
-
-			<!-- 			<h:form id="myForm" rendered="#{!loginBean.connected}"> -->
-			<!-- 				<rich:messages /> -->
-			<!-- 				<h:outputLabel value="#{loginBean.registeringMessage}" /> -->
-			<!-- 				<h:panelGrid columns="1"> -->
-			<!-- 					<h:outputLabel value="Login:" for="login" /> -->
-			<!-- 					<br /> -->
-			<!-- 					<h:inputText value="#{loginBean.user.login}" required="true" -->
-			<!-- 						id="login" class="form-control input-lg" p:placeholder="Login"> -->
-			<!-- 						<f:validateLength minimum="3" /> -->
-			<!-- 					</h:inputText> -->
-			<!-- 					<br /> -->
-			<!-- 					<h:message for=":myForm:login" styleClass="error" /> -->
-			<!-- 					<br /> -->
-			<!-- 					<br /> -->
-			<!-- 					<h:outputLabel value="Password:" for="password" /> -->
-			<!-- 					<br /> -->
-			<!-- 					<h:inputSecret value="#{loginBean.user.password}" required="true" -->
-			<!-- 						id="password"> -->
-			<!-- 						<f:validateLength minimum="2" /> -->
-			<!-- 					</h:inputSecret> -->
-			<!-- 					<br /> -->
-			<!-- 					<h:message for="password" styleClass="error" /> -->
-			<!-- 					<br /> -->
-			<!-- 					<br /> -->
-			<!-- 					<h:commandButton value="Se connecter" action="#{loginBean.logMe}"> -->
-			<!-- 					</h:commandButton> -->
-			<!-- 					<h:link value="S'enregister" outcome="/pages/register.jsf"></h:link> -->
-			<!-- 				</h:panelGrid> -->
-			<!-- 			</h:form> -->
-
 			<div class="container">
 
 				<div class="row" style="margin-top: 20px">
@@ -89,22 +58,6 @@
 					</div>
 				</div>
 
-				<!-- 					<h:form>					 -->
-				<!-- 					   <h:panelGrid columns="2" rendered="#{!login.loggedIn}">					 -->
-				<!-- 					      <f:validateBean>					 -->
-				<!-- 					         <h:outputLabel for="username">Username:</h:outputLabel>					 -->
-				<!-- 					         <h:inputText id="username" value="#{credentials.username}"/>					 -->
-				<!-- 					         <h:outputLabel for="password">Password:</h:outputLabel>					 -->
-				<!-- 					         <h:inputSecret id="password" value="#{credentials.password}"/>					 -->
-				<!-- 					      </f:validateBean>					 -->
-				<!-- 					   </h:panelGrid> -->
-
-				<!-- 					   <h:commandButton value="Login" action="#{login.login}" rendered="#{!login.loggedIn}"/>					 -->
-				<!-- 					   <h:commandButton value="Logout" action="#{login.logout}" rendered="#{login.loggedIn}"/> -->
-
-				<!-- 					</h:form> -->
-
-
 				<h:panelGroup rendered="#{login.loggedIn}">
 					
 					   signed in as #{currentUser.username}
@@ -113,12 +66,7 @@
 
 			</div>
 
-			<!-- 			<h:outputLabel rendered="#{loginBean.connected}"> -->
-			<!-- 				T'es connecté tête de fion ! -->
-			<!-- 			</h:outputLabel> -->
 		</ui:define>
-
-
 
 	</ui:composition>
 </body>

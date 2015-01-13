@@ -32,8 +32,8 @@
 					#{book.unitPrice} €
 				</rich:column>
 				<rich:column>
-					<f:facet name="header">Add to Cart</f:facet>
-					<h:button value="Add"></h:button>
+					<f:facet name="header">View Infos</f:facet>
+					<h:button value="Voir" outcome="/pages/bookInfo.jsf?isbn=#{book.isbn}"></h:button>
 				</rich:column>
 			</rich:dataTable>
 
