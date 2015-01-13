@@ -10,14 +10,16 @@ import com.bookstore.web.util.EMFListener;
 
 public class UserService {
 
+	
 	public User login(String login, String password)
-	{
+	{		
 		EntityManager em = EMFListener.createEntityManager();
-		
 		User user = em.find(User.class, login);
 		
 		System.out.println(user);
-				
+		
+		em.close();
+		
 		if(user.getPassword().equals(password))
 		{
 			return user;
@@ -45,7 +47,7 @@ public class UserService {
 			System.out.println(e.getMessage());
 			throw new UserAlreadyExistsException(login, e);
 		}
-		
+		em.close();
 	}
 	
 	public void printAllUser()
@@ -55,5 +57,6 @@ public class UserService {
 		for (User u : users) {
 			System.out.println(u.getLogin() + ' ' + u.getPassword());
 		}
+		em.close();
 	}
 }
