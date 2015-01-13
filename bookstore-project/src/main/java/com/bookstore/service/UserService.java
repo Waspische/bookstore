@@ -1,6 +1,6 @@
 package com.bookstore.service;
 
-import java.io.Console;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -17,7 +17,7 @@ public class UserService {
 		User user = em.find(User.class, login);
 		
 		System.out.println(user);
-		
+				
 		if(user.getPassword().equals(password))
 		{
 			return user;
@@ -34,12 +34,26 @@ public class UserService {
 		user.setLogin(login);
 		user.setPassword(password);
 		
+		System.out.println(user.getLogin() + ' ' + user.getPassword());
 		
 		try {
+			em.getTransaction().begin();
 			em.persist(user);
+			em.getTransaction().commit();
+			this.printAllUser();
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			throw new UserAlreadyExistsException(login, e);
 		}
 		
+	}
+	
+	public void printAllUser()
+	{
+		EntityManager em = EMFListener.createEntityManager();
+		List<User> users = em.createQuery("From User", User.class).getResultList();
+		for (User u : users) {
+			System.out.println(u.getLogin() + ' ' + u.getPassword());
+		}
 	}
 }

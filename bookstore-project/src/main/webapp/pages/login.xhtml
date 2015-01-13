@@ -15,6 +15,7 @@
 
 		<ui:define name="body">
 			<h:form id="myForm" >
+			<h:outputLabel value="#{loginBean.registeringMessage}" />
 			<h:panelGrid columns="1">
 				<h:outputLabel value="Login:" for="login"/>
 				<br/>
@@ -37,7 +38,7 @@
 				<h:commandButton value="Se connecter" action="#{loginBean.logMe}">
 					<f:ajax execute="@form" render="@form" />
 				</h:commandButton> 
-				<h:commandButton value="S'enregister" action="#{loginBean.register}">
+				<h:commandButton value="S'enregister" action="#{loginBean.goToRegister}">
 					<f:ajax execute="@none" render="@none" />
 				</h:commandButton> 
 			</h:panelGrid>

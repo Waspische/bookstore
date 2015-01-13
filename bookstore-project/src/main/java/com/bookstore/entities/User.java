@@ -10,8 +10,10 @@ import javax.persistence.Table;
 public class User {
 
 	@Id
+	@Column(name="login")
 	private String login;
 	
+	@Column(name="email")
 	private String email;
 	
 	@Column(name="pwd")

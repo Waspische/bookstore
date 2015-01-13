@@ -22,7 +22,9 @@ public class LoginBean {
 	
 	private String email;
 	
-	private String passwordComplexityIndicator ;
+	private String passwordComplexityIndicator;
+	
+	private String registeringMessage = "";
 	
 	public String logMe(){
 		//Passer sur la BDD
@@ -43,9 +45,37 @@ public class LoginBean {
 		}
 	}
 	
-	public String register()
+	@SuppressWarnings("finally")
+	public String registerMe()
+	{
+		String page = "";
+		UserService us = new UserService();
+		try
+		{
+			us.addUser(this.login, this.email, this.password);
+			this.setRegisteringMessage("Inscription Validée !");
+			page = "/pages/login.xhtml";
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+			this.setRegisteringMessage("Erreur lors de votre inscription"); 
+			page = "/pages/register.xhtml";
+		}
+		finally
+		{
+			return page;
+		}
+	}
+	
+	public String goToRegister()
 	{
 		return "/pages/register.xhtml";
+	}
+	
+	public String goToLogin()
+	{
+		return "/pages/login.xhtml";
 	}
 	
 	public String getLogin() {
@@ -80,7 +110,6 @@ public class LoginBean {
 		this.passwordComplexityIndicator = passwordComplexityIndicator;
 	}
 
-	
 	public void recomputePasswordComplexityIndicator(AjaxBehaviorEvent event){
 		//reinit
 		setPasswordComplexityIndicator(null);	
@@ -99,7 +128,15 @@ public class LoginBean {
 			case 3: setPasswordComplexityIndicator("HIGH"); break;
 		}
 	}
-		
+
+	
+	public String getRegisteringMessage() {
+		return registeringMessage;
+	}
+
+	public void setRegisteringMessage(String registeringMessage) {
+		this.registeringMessage = registeringMessage;
+	}
 
 	
 }
