@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<body>
+	<ui:composition template="/templates/basicTemplate.xhtml">
+
+		
+		<ui:define name="body">
+			<table>
+				<thead>
+					<tr><td colspan="2">Informations about your book:</td></tr>
+				</thead>
+				<tbody>
+					<tr><td>Title</td><td><h:outputLabel value="#{bookBean.title}"/></td></tr>
+					<tr><td>ISBN</td><td><h:outputLabel value="#{bookBean.isbn}"/></td></tr>
+					<tr><td>Author</td><td><h:outputLabel value="#{bookBean.author}"/></td></tr>
+					<tr><td>Editor</td><td><h:outputLabel value="#{bookBean.editor}"/></td></tr>
+					<tr><td>Price</td><td><h:outputLabel value="#{bookBean.unitPrice}"/></td></tr>
+					<tr><td colspan="2"><h:button value="Ajouter au panier"></h:button></td></tr>
+				</tbody>
+			</table>
+		</ui:define>
+		
+			
+	</ui:composition>
+</body>
+</html>
