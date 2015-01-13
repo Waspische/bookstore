@@ -19,8 +19,7 @@ public class UserService {
 		System.out.println(user);
 		
 		em.close();
-		
-		if(user.getPassword().equals(password))
+		if(user != null && user.getPassword().equals(password))
 		{
 			return user;
 		}

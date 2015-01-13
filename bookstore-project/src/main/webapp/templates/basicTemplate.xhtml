@@ -7,7 +7,6 @@
 	xmlns:a4j="http://richfaces.org/a4j">
 <h:head>
 	<title>My First JSF App - <ui:insert name="title">Default window title extension</ui:insert></title>
-	<h:outputStylesheet library="css" name="style.css" />
 	<h:outputStylesheet library="css" name="bootstrap/bootstrap.min.css" />
 	<h:outputStylesheet library="css" name="application.css" />
 </h:head>
@@ -41,25 +40,16 @@
 		  </div><!-- /.container-fluid -->
 		</nav>
 	</div>
+	
+	<!-- Content -->
 	<div class="container" id="wrapper">
-				<!-- Content -->
-			<div>
-			<ui:insert name="body">Default Body</ui:insert>
-			<div style="">
-				<ui:insert name="extra-infos"></ui:insert>
-			</div>
-		</div>
+		<ui:insert name="body">Default Body</ui:insert>
+		<ui:insert name="extra-infos"></ui:insert>
 	</div>
 	
 	<div class="container" id="footer">
 			<!-- Footer -->
 		<div style="text-align: right">
-			<h:form>
-	<!-- 			<h:commandLink action="#{skinBean.changeSkin('japanCherry')}"> -->
-	<!-- 				<h:graphicImage -->
-	<!-- 					url="http://www.music-story.com/img/album_J_50/j-dilla-jay-love-japan.jpg" /> -->
-	<!-- 			</h:commandLink> -->
-			</h:form>
 			      	<h:graphicImage url="http://www.univ-catholille.fr/img/logo.gif"
 				height="100px" />
 		</div>
