@@ -34,9 +34,15 @@
 				<h:message for="password" styleClass="error"/>
 				<br/>
 				<br/>
-				<h:commandButton value="Logon" action="#{loginBean.logMe}"/> 
+				<h:commandButton value="Se connecter" action="#{loginBean.logMe}">
+					<f:ajax execute="@form" render="@form" />
+				</h:commandButton> 
+				<h:commandButton value="S'enregister" action="#{loginBean.register}">
+					<f:ajax execute="@none" render="@none" />
+				</h:commandButton> 
 			</h:panelGrid>
 		</h:form>
+		
 		</ui:define>
 
 		
