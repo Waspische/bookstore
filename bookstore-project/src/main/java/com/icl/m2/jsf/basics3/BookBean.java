@@ -16,6 +16,7 @@ import com.bookstore.service.BookService;
 public class BookBean {
 
 	private BookService bookService = new BookService();
+	private	String bookMessage = "";
 	
 	private String isbn = "3939393";
 
@@ -23,7 +24,7 @@ public class BookBean {
 
 	private Double unitPrice;
 
-	private Author author;
+	private String author;
 	
 	private String editor = "";
 
@@ -31,12 +32,28 @@ public class BookBean {
 	public void init(){
 		HttpServletRequest req = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		HttpServletResponse res = (HttpServletResponse)FacesContext.getCurrentInstance().getExternalContext().getResponse();
-		this.isbn = req.getParameter("isbn");
+		String req_isbn = req.getParameter("isbn");
+		if(req_isbn != null)
+		{
+			this.isbn = req_isbn;
+		}
 		Book b = this.bookService.find(this.isbn);
-		this.title = b.getTitle();
-		this.author = b.getAuthor();
-		this.unitPrice = b.getUnitPrice();
-		this.setEditor(b.getEditor());			
+		System.out.println(b);
+		if(b != null)
+		{
+			this.title = b.getTitle();
+			this.author = b.getAuthor().getFirstName() + " " + b.getAuthor().getLastName();
+			this.unitPrice = b.getUnitPrice();
+			this.setEditor(b.getEditor());
+		}
+		else
+		{
+			this.title = "";
+			this.author = "";
+			this.unitPrice = 0.0;
+			this.setEditor("");
+			this.bookMessage = "Aucun livre trouvé ! ";
+		}
 	}
 	
 	public String getIsbn() {
@@ -63,21 +80,38 @@ public class BookBean {
 		this.unitPrice = unitPrice;
 	}
 
-	public Author getAuthor() {
+	public String getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(Author author) {
+	public void setAuthor(String author) {
 		this.author = author;
 	}
 
+	
 	public String getEditor() {
 		return editor;
 	}
 
+	
 	public void setEditor(String editor) {
 		this.editor = editor;
 	}
 
-	
+	public String getBookMessage() {
+		return bookMessage;
+	}
+
+	public void setBookMessage(String bookMessage) {
+		this.bookMessage = bookMessage;
+	}
+
+	public String addToCart()
+	{
+		System.out.println("add!");
+		
+		
+		
+		return "/pages/demo.xhtml";
+	}
 }

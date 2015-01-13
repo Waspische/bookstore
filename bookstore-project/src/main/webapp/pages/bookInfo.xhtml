@@ -14,7 +14,7 @@
 			<h:outputLabel value="#{bookBean.bookMessage}"/>
 			<br/><br/>
 			<h:form>
-				<table>
+				<!--<table>
 					<thead>
 						<tr><td colspan="2">Informations about your book:</td></tr>
 					</thead>
@@ -23,11 +23,18 @@
 						<tr><td>ISBN</td><td><h:outputLabel for="isbn" value="#{bookBean.isbn}"/><h:inputHidden value="#{bookBean.isbn}" id="isbn" /></td></tr>
 						<tr><td>Author</td><td><h:outputLabel for="author" value="#{bookBean.author}"/><h:inputHidden value="#{bookBean.author}" id="author" /></td></tr>
 						<tr><td>Editor</td><td><h:outputLabel for="editor" value="#{bookBean.editor}"/><h:inputHidden value="#{bookBean.editor}" id="editor" /></td></tr>
-						<tr><td>Price</td><td><h:outputLabel for="unitPrice" value="#{bookBean.unitPrice}"/><h:inputHidden value="#{bookBean.unitPrice}" id="unitPrice" /></td></tr>
+						<tr><td>Price</td><td><h:outputLabel for="unitPrice" value="#{bookBean.unitPrice}€"/><h:inputHidden value="#{bookBean.unitPrice}" id="unitPrice" /></td></tr>
 						<tr><td colspan="2"><h:commandButton value="Ajouter au panier" action="#{bookBean.addToCart}" /></td></tr>
 					</tbody>
-				</table>
+				</table>-->
+				Title : <h:outputLabel for="title" value="#{bookBean.title}"/><br/>
+				ISBN : <h:outputLabel for="isbn" value="#{bookBean.isbn}"/><br/>
+				Author : <h:outputLabel for="author" value="#{bookBean.author}"/><br/>
+				Editor : <h:outputLabel for="editor" value="#{bookBean.editor}"/><br/>
+				Price : <h:outputLabel for="unitPrice" value="#{bookBean.unitPrice}€"/><br/>
+				<h:commandButton value="Ajouter au panier" action="#{bookBean.addToCart}" />
 			</h:form>
+			
 		</ui:define>
 		
 			
