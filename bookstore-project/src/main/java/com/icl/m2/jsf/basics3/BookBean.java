@@ -18,7 +18,7 @@ public class BookBean {
 	private BookService bookService = new BookService();
 	private	String bookMessage = "";
 	
-	private String isbn = "3939393";
+	private String isbn;
 
 	private String title;
 
@@ -109,9 +109,8 @@ public class BookBean {
 	public String addToCart()
 	{
 		System.out.println("add!");
-		
-		
-		
-		return "/pages/demo.xhtml";
+		System.out.println(this.isbn);
+		CartBean.addToCart(this.bookService.find(this.isbn));
+		return "/pages/cart.xhtml";
 	}
 }
