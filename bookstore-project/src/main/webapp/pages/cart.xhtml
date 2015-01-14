@@ -11,9 +11,26 @@
 		<ui:define name="title">
 			My Cart.
 		</ui:define>
-
+<!-- Pas d'affichage du panier, je comprends pas... -->
 		<ui:define name="body">
-			No articles in your cart.
+			<rich:dataTable id="books" value="#{cartBean.books}" var="book" >
+				<rich:column>
+					<f:facet name="header">ISBN</f:facet>
+					<h:outputText value="#{book.isbn}"/>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">Title</f:facet>
+					#{book.title}
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">Author</f:facet>
+					#{book.author.lastName} #{book.author.firstName} 
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">Price</f:facet>
+					#{book.unitPrice} €
+				</rich:column>
+			</rich:dataTable>
 		</ui:define>
 
 

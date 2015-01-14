@@ -33,10 +33,19 @@ public class BookBean {
 		HttpServletRequest req = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		HttpServletResponse res = (HttpServletResponse)FacesContext.getCurrentInstance().getExternalContext().getResponse();
 		String req_isbn = req.getParameter("isbn");
+		String req_action = req.getParameter("action");
 		if(req_isbn != null)
 		{
 			this.isbn = req_isbn;
 		}
+		System.out.println(req_action);
+		if(req_action.equals("cart"))
+		{
+			this.addToCart();
+			this.bookMessage = "Livre ajouté au panier !";
+		}
+		
+		System.out.println(this.isbn);
 		Book b = this.bookService.find(this.isbn);
 		System.out.println(b);
 		if(b != null)
@@ -54,6 +63,7 @@ public class BookBean {
 			this.setEditor("");
 			this.bookMessage = "Aucun livre trouvé ! ";
 		}
+		 
 	}
 	
 	public String getIsbn() {
@@ -88,12 +98,10 @@ public class BookBean {
 		this.author = author;
 	}
 
-	
 	public String getEditor() {
 		return editor;
 	}
 
-	
 	public void setEditor(String editor) {
 		this.editor = editor;
 	}
@@ -106,11 +114,11 @@ public class BookBean {
 		this.bookMessage = bookMessage;
 	}
 
-	public String addToCart()
+	public void addToCart()
 	{
 		System.out.println("add!");
 		System.out.println(this.isbn);
 		CartBean.addToCart(this.bookService.find(this.isbn));
-		return "/pages/cart.xhtml";
+		//return "/pages/cart.xhtml";
 	}
 }
