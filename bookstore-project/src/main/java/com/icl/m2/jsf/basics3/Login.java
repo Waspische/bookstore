@@ -20,6 +20,9 @@ public class Login implements Serializable {
 
 	@ManagedProperty(value = "#{credentials}")
 	Credentials credentials;
+	
+	@ManagedProperty(value="#{registerBean}")
+	RegisterBean registerBean;
 
 	private User user;
 
@@ -44,10 +47,6 @@ public class Login implements Serializable {
 			return null;
 		} else {
 			this.user = u;
-			FacesContext.getCurrentInstance().addMessage(
-					"loginForm:password",
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenue "
-							+ user.getLogin() + ".", "Achete!"));
 			return "/pages/login.xthml";
 		}
 
@@ -58,28 +57,63 @@ public class Login implements Serializable {
 	public String registerMe()
 	{
 		String page = "";
-		UserService us = new UserService();
-		try
-		{
-			us.addUser(user.getLogin(), user.getEmail(), user.getPassword()); // TODO change to User
-			this.setRegisteringMessage("Inscription Validée !");
-			page = "/pages/login.xhtml";
+		
+		boolean hasErrors = false;
+		
+		// TODO : check if user already exists
+		
+		if(!registerBean.getMail().equals(registerBean.getConfirmationMail())){ // TODO :  check mail
+			FacesContext
+			.getCurrentInstance()
+			.addMessage(
+					"resigterForm:confirmMail",
+					new FacesMessage(
+							FacesMessage.SEVERITY_ERROR,
+							"The confirmation mail is different",
+							"Incorrect mail"));
+			hasErrors = true;
 		}
-		catch(Exception e)
-		{
-			System.out.println(e.getMessage());
-			this.setRegisteringMessage("Erreur lors de votre inscription"); 
-			page = "/pages/register.xhtml";
+		if(!registerBean.getPassword().equals(registerBean.getConfirmationPassword())){ // TODO : check password
+			FacesContext
+			.getCurrentInstance()
+			.addMessage(
+					"registerForm:confirmPassword",
+					new FacesMessage(
+							FacesMessage.SEVERITY_ERROR,
+							"The confirmation password is different!",
+							"Incorrect password"));
+			hasErrors = true;
 		}
-		finally
-		{
-			return page;
+		
+		if(!hasErrors){
+			
+			System.out.println(registerBean);
+			
+			UserService us = new UserService();
+			try
+			{
+				us.addUser(registerBean.getLogin(), registerBean.getMail(), registerBean.getPassword());
+				this.setRegisteringMessage("Inscription Validée !");
+				page = "/pages/register.xhtml";
+			}
+			catch(Exception e)
+			{
+				System.out.println(e.getMessage());
+				this.setRegisteringMessage("Le login '"+ registerBean.getLogin() + "' existe déjà.	"); 
+				page = "/pages/register.xhtml";
+			}
+			finally
+			{
+				return page;
+			}
 		}
+		
+		return null;
 	}
 	
 	public String logout() {
 		user = null;
-		return "/pages/login.xhtml";
+		return null;
 	}
 
 	public boolean isLoggedIn() {
@@ -94,6 +128,16 @@ public class Login implements Serializable {
 	public void setCredentials(Credentials credentials) {
 		this.credentials = credentials;
 	}
+	
+	public RegisterBean getRegisterBean() {
+		return registerBean;
+	}
+
+
+	public void setRegisterBean(RegisterBean registerBean) {
+		this.registerBean = registerBean;
+	}
+
 
 	@Produces
 	User getCurrentUser() {
@@ -103,6 +147,16 @@ public class Login implements Serializable {
 
 	public String getRegisteringMessage() {
 		return registeringMessage;
+	}
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 

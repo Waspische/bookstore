@@ -24,6 +24,7 @@
 								<h2>Please Sign In</h2>
 								<rich:messages />
 								<div class="form-group">
+									<h:outputLabel value="Login"></h:outputLabel>
 									<h:inputText value="#{credentials.login}" required="true"
 										id="login" class="form-control input-lg">
 										<f:validateLength minimum="3" />
@@ -31,6 +32,7 @@
 									<h:message for=":myForm:login" styleClass="error" />
 								</div>
 								<div class="form-group">
+									<h:outputLabel value="Password"></h:outputLabel>
 									<h:inputSecret value="#{credentials.password}" required="true"
 										id="password" class="form-control input-lg">
 										<f:validateLength minimum="2" />
@@ -51,18 +53,16 @@
 								</div>
 							</fieldset>
 						</h:form>
-						<h:form>
-							<h:commandButton value="Logout" action="#{login.logout}"
-								rendered="#{login.loggedIn}" />
+						<h:form rendered="#{login.loggedIn}">
+							<div class="row">
+								<h:outputLabel value="Vous êtes déjà connecté"></h:outputLabel>
+							</div>
+							<div class="row">
+								<h:commandButton class="btn btn-lg btn-danger btn-block" value="Logout" action="#{login.logout}"/>
+							</div>
 						</h:form>
 					</div>
 				</div>
-
-				<h:panelGroup rendered="#{login.loggedIn}">
-					
-					   signed in as #{currentUser.username}
-					
-					</h:panelGroup>
 
 			</div>
 

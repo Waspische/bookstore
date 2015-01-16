@@ -2,6 +2,7 @@ package com.icl.m2.jsf.basics3;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +28,9 @@ public class BookBean {
 	private String author;
 	
 	private String editor = "";
+
+	@ManagedProperty(value="#{cartBean}")
+	private CartBean cartBean;
 
 	@PostConstruct
 	public void init(){
@@ -118,7 +122,15 @@ public class BookBean {
 	{
 		System.out.println("add!");
 		System.out.println(this.isbn);
-		CartBean.addToCart(this.bookService.find(this.isbn));
+		cartBean.addToCart(this.bookService.find(this.isbn));
 		//return "/pages/cart.xhtml";
+	}
+
+	public CartBean getCartBean() {
+		return cartBean;
+	}
+
+	public void setCartBean(CartBean cartBean) {
+		this.cartBean = cartBean;
 	}
 }

@@ -9,7 +9,7 @@
 <body>
 	<ui:composition template="/templates/basicTemplate.xhtml">
 		<ui:define name="title">
-			Demo
+			Catalog
 		</ui:define>
 
 		<ui:define name="body">
@@ -21,15 +21,18 @@
 				</rich:column>
 				<rich:column>
 					<f:facet name="header">Title</f:facet>
-					#{book.title}
+					<h:outputText value="#{book.title}"/>
 				</rich:column>
 				<rich:column>
 					<f:facet name="header">Author</f:facet>
-					#{book.author.lastName} #{book.author.firstName} 
+					<h:outputText value="#{book.author.lastName} #{book.author.firstName}" />
 				</rich:column>
 				<rich:column>
 					<f:facet name="header">Price</f:facet>
-					#{book.unitPrice} €
+<!-- 					#{book.unitPrice} € -->
+					<h:outputLabel value="#{book.unitPrice}">
+						<f:convertNumber currencySymbol="€" type="currency" />
+					</h:outputLabel>
 				</rich:column>
 				<rich:column>
 					<f:facet name="header">View Infos</f:facet>

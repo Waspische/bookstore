@@ -16,41 +16,52 @@
 	<!-- Header -->
 	<div id="header">
 		<div id="content" class="bs-docs-header">
-	      <div class="container">
-	        <h1 id="mainTitle">Welcome in our Library</h1>
-	      </div>
-	    </div>
+			<div class="container">
+				<h1 id="mainTitle">Welcome in our Library</h1>
+				<div style="float: right">
+					<h:panelGroup rendered="#{login.loggedIn}">					
+					   Signed in as #{login.user.login}					   
+						<h:form>
+							<h:commandButton class="btn btn-danger" value="Logout" action="#{login.logout}"
+								rendered="#{login.loggedIn}" />
+						</h:form>					
+					</h:panelGroup>
+				</div>
+			</div>
+		</div>
 	</div>
-	
+
 	<div class="container" id="navbar">
 		<nav class="navbar navbar-default">
-		  <div class="container-fluid">
-		    <!-- Brand and toggle get grouped for better mobile display -->
-		    <div class="navbar-header">
-		      <h:link class="navbar-brand" outcome="/pages/home.jsf" value="Home"></h:link>
-		    </div>
-		
-		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		      <ul class="nav navbar-nav">
-		        <li><h:link outcome="/pages/demo.jsf" value="Catalog"></h:link></li>
-		        <li><h:link outcome="/pages/cart.jsf" value="My Cart"></h:link></li>
-		        <li><h:link outcome="/pages/login.jsf" value="Login"></h:link></li>
-		        </ul>
-		    </div><!-- /.navbar-collapse -->
-		  </div><!-- /.container-fluid -->
-		</nav>
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<h:link class="navbar-brand" outcome="/pages/home.jsf" value="Home"></h:link>
+			</div>
+
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><h:link outcome="/pages/demo.jsf" value="Catalog"></h:link></li>
+					<li><h:link outcome="/pages/cart.jsf" value="My Cart"></h:link></li>
+					<li><h:link outcome="/pages/login.jsf" value="Login"></h:link></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid --> </nav>
 	</div>
-	
+
 	<!-- Content -->
 	<div class="container" id="wrapper">
 		<ui:insert name="body">Default Body</ui:insert>
 		<ui:insert name="extra-infos"></ui:insert>
 	</div>
-	
+
 	<div class="container" id="footer">
-			<!-- Footer -->
+		<!-- Footer -->
 		<div style="text-align: right">
-			      	<h:graphicImage url="http://www.univ-catholille.fr/img/logo.gif"
+			<h:graphicImage url="http://www.univ-catholille.fr/img/logo.gif"
 				height="100px" />
 		</div>
 	</div>

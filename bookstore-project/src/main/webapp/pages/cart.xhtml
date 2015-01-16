@@ -11,26 +11,41 @@
 		<ui:define name="title">
 			My Cart.
 		</ui:define>
-<!-- Pas d'affichage du panier, je comprends pas... -->
+		<!-- Pas d'affichage du panier, je comprends pas... -->
 		<ui:define name="body">
-			<rich:dataTable id="books" value="#{cartBean.books}" var="book" >
-				<rich:column>
-					<f:facet name="header">ISBN</f:facet>
-					<h:outputText value="#{book.isbn}"/>
-				</rich:column>
-				<rich:column>
-					<f:facet name="header">Title</f:facet>
-					#{book.title}
-				</rich:column>
-				<rich:column>
-					<f:facet name="header">Author</f:facet>
-					#{book.author.lastName} #{book.author.firstName} 
-				</rich:column>
-				<rich:column>
-					<f:facet name="header">Price</f:facet>
-					#{book.unitPrice} €
-				</rich:column>
-			</rich:dataTable>
+			<h:form>
+				<rich:dataTable id="books" value="#{cartBean.books}" var="book">
+					<rich:column>
+						<f:facet name="header">ISBN</f:facet>
+						<h:outputText value="#{book.isbn}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Title</f:facet>
+						#{book.title}
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Author</f:facet>
+						#{book.author.lastName} #{book.author.firstName} 
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Price</f:facet>
+						<h:outputLabel value="#{book.unitPrice}">
+							<f:convertNumber currencySymbol="€" type="currency" />
+						</h:outputLabel>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header"></f:facet>
+						<h:commandLink value="Delete" action="#{cartBean.deleteBook}">
+							<f:setPropertyActionListener value="#{book}" target="#{cartBean.selectedBook}"></f:setPropertyActionListener>
+						</h:commandLink>
+					</rich:column>
+				</rich:dataTable>
+			</h:form>
+			<br />
+			<h:outputLabel value="Total price : "/>
+			<h:outputLabel value="#{cartBean.totalPrice}">
+				<f:convertNumber currencySymbol="€" type="currency" />
+			</h:outputLabel>
 		</ui:define>
 
 
