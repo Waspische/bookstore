@@ -12,41 +12,86 @@ import com.bookstore.entities.Book;
 @SessionScoped
 public class CartBean {
 
-	private List<Book> books = new ArrayList<Book>();
+	private List<BookInCart> books = new ArrayList<BookInCart>();
 	private float totalPrice;
 	
-	private Book selectedBook;
+	private BookInCart selectedBook;
 	
 	public void addToCart(Book book)
 	{
-		System.out.println("book to add : " + book.getTitle());
-		books.add(book);
-		for (Book b : books) {
-			System.out.println(b.getTitle());
+		BookInCart bookInCart = getBookInCart(book);
+		if(bookInCart != null){
+			bookInCart.setQuantity(bookInCart.getQuantity()+1);
+		} else {
+			System.out.println("book to add : " + book.getTitle());
+			books.add(new BookInCart(book, 1));
+			for (BookInCart b : books) {
+				System.out.println(b.getBook().getTitle());
+			}
 		}
 		totalPrice += book.getUnitPrice();
 	}
 
 	public String deleteBook(){
-		System.out.println("book to remove : " + selectedBook.getTitle());
-		books.remove(selectedBook);
-		for (Book b : books) {
-			System.out.println(b.getTitle());
+		System.out.println("book to remove : " + selectedBook.getBook().getTitle());
+		for (BookInCart b : books) {
+			System.out.println(b.getBook().getTitle());
 		}
-		totalPrice -= selectedBook.getUnitPrice();
+		totalPrice -= (selectedBook.getBook().getUnitPrice() * selectedBook.getQuantity());
 		
 		if(totalPrice < 0.01){
 			totalPrice = 0;
+		}
+
+		books.remove(selectedBook);
+		
+		return null;
+	}
+	
+	public String addOneQtt(){
+		
+		selectedBook.setQuantity(selectedBook.getQuantity() + 1);
+		
+		totalPrice += selectedBook.getBook().getUnitPrice();
+		
+		return null;
+	}
+	
+	public String removeOneQtt(){
+		
+		if(selectedBook.getQuantity() == 1){
+			deleteBook();
+		} else {
+			selectedBook.setQuantity(selectedBook.getQuantity() - 1);
+			
+			totalPrice -= selectedBook.getBook().getUnitPrice();
+			
+			if(totalPrice < 0.01){
+				totalPrice = 0;
+			}
 		}
 		
 		return null;
 	}
 	
-	public List<Book> getBooks() {
+	public int getNbBooks(){
+		return books.size();
+	}
+	
+	private BookInCart getBookInCart(Book book){
+		for (BookInCart bookInCart : books) {
+			if(bookInCart.getBook().getIsbn().equals(book.getIsbn())){
+				return bookInCart;
+			}
+		}
+		return null;
+	}
+	
+	public List<BookInCart> getBooks() {
 		return books;
 	}
 
-	public void setBooks(List<Book> books) {
+	public void setBooks(List<BookInCart> books) {
 		this.books = books;
 	}
 
@@ -58,11 +103,11 @@ public class CartBean {
 		this.totalPrice = totalPrice;
 	}
 
-	public Book getSelectedBook() {
+	public BookInCart getSelectedBook() {
 		return selectedBook;
 	}
 
-	public void setSelectedBook(Book selectedBook) {
+	public void setSelectedBook(BookInCart selectedBook) {
 		this.selectedBook = selectedBook;
 	}
 	

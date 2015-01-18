@@ -28,6 +28,10 @@
 					<h:outputText value="#{book.author.lastName} #{book.author.firstName}" />
 				</rich:column>
 				<rich:column>
+					<f:facet name="header">Editor</f:facet>
+					<h:outputText value="#{book.editor}" />
+				</rich:column>
+				<rich:column>
 					<f:facet name="header">Price</f:facet>
 <!-- 					#{book.unitPrice} € -->
 					<h:outputLabel value="#{book.unitPrice}">

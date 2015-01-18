@@ -48,3 +48,15 @@ a{
 	text-decoration: none;
 }
 
+#cart{
+	border: 1px #e4e4e4 solid;
+	background-color: #FFFFFF;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	padding: 10px;
+	min-height: 90px;
+	margin-top: 5px;
+}
+
+

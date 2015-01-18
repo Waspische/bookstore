@@ -14,7 +14,12 @@
 		</ui:define>
 
 		<ui:define name="body">
-			Welcome #{loginBean.login} (#{loginBean.email}).
+			<h:panelGroup rendered="#{login.loggedIn}">
+				Anw welcome back #{login.user.login} : #{login.user.email}.
+			</h:panelGroup>
+			<h:panelGroup rendered="#{!login.loggedIn}">
+				You are not logged in. <h:link outcome="/pages/login.jsf" value="I need to log in please"> </h:link>
+			</h:panelGroup>
 		</ui:define>
 
 		<ui:define name="extra-infos">

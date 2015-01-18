@@ -17,15 +17,31 @@
 	<div id="header">
 		<div id="content" class="bs-docs-header">
 			<div class="container">
-				<h1 id="mainTitle">Welcome in our Library</h1>
-				<div style="float: right">
-					<h:panelGroup rendered="#{login.loggedIn}">					
+				<div class="row">
+					<div class="col-xs-5 col-md-5">
+						<h1 id="mainTitle">Welcome in our Library</h1>
+					</div>
+					<div class="col-xs-5 col-md-5" id="cart">
+						<div class="row">
+							<div class="col-xs-12 col-md-12">
+								<h:link outcome="/pages/cart.jsf" value="Panier"></h:link>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12 col-md-12">
+								Nombre d'article dans le panier : <h:outputLabel value="#{cartBean.nbBooks}"></h:outputLabel>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-2 col-md-2">
+						<h:panelGroup rendered="#{login.loggedIn}">					
 					   Signed in as #{login.user.login}					   
 						<h:form>
-							<h:commandButton class="btn btn-danger" value="Logout" action="#{login.logout}"
-								rendered="#{login.loggedIn}" />
-						</h:form>					
-					</h:panelGroup>
+								<h:commandButton class="btn btn-danger" value="Logout"
+									action="#{login.logout}" rendered="#{login.loggedIn}" />
+							</h:form>
+						</h:panelGroup>
+					</div>
 				</div>
 			</div>
 		</div>
