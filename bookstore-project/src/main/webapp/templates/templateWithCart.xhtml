@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<h:head>
+	<title>My First JSF App - <ui:insert name="title">Default window title extension</ui:insert></title>
+	<h:outputStylesheet library="css" name="bootstrap/bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="application.css" />
+</h:head>
+
+<body>
+
+	<!-- Header -->
+	<div id="header">
+		<div id="content" class="bs-docs-header">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-5 col-md-5">
+						<h1 id="mainTitle">Welcome in our Library</h1>
+					</div>
+					<div class="col-xs-5 col-md-5" id="cart">
+						<div class="row">
+							<div class="col-xs-12 col-md-12">
+								<h:link outcome="/pages/cart.jsf" value="Panier"></h:link>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12 col-md-12">
+								Nombre d'article dans le panier : <h:outputLabel value="#{cartBean.nbBooks}"></h:outputLabel>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-2 col-md-2">
+						<h:panelGroup rendered="#{login.loggedIn}">					
+					   Signed in as #{login.user.login}					   
+						<h:form>
+								<h:commandButton class="btn btn-danger" value="Logout"
+									action="#{login.logout}" rendered="#{login.loggedIn}" />
+							</h:form>
+						</h:panelGroup>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container" id="navbar">
+		<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<h:link class="navbar-brand" outcome="/pages/home.jsf" value="Home"></h:link>
+			</div>
+
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><h:link outcome="/pages/demo.jsf" value="Catalog"></h:link></li>
+					<li><h:link outcome="/pages/cart.jsf" value="My Cart"></h:link></li>
+					<li><h:link outcome="/pages/login.jsf" value="Login"></h:link></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid --> </nav>
+	</div>
+
+	<!-- Content -->
+	<div class="container" id="wrapper">
+		<ui:insert name="body">Default Body</ui:insert>
+		<ui:insert name="extra-infos"></ui:insert>
+	</div>
+
+	<div class="container" id="footer">
+		<!-- Footer -->
+		<div style="text-align: right">
+			<h:graphicImage url="http://www.univ-catholille.fr/img/logo.gif"
+				height="100px" />
+		</div>
+	</div>
+
+
+
+</body>
+</html>
